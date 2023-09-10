@@ -1,9 +1,9 @@
 = Host-specific information ====================================================
 $> hostname; uname -msr
-e3r7p5.42roma.it
+e3r6p5.42roma.it
 Darwin 18.7.0 x86_64
 $> date
-Sat Sep  9 20:25:10 CEST 2023
+Sun Sep 10 19:19:35 CEST 2023
 $> gcc --version
 Apple clang version 11.0.0 (clang-1100.0.33.17)
 Target: x86_64-apple-darwin18.7.0
@@ -20,7 +20,7 @@ $> norminette libft.h | grep -E '(Error|Warning)'
 
 = Compiling libft ==============================================================
 $> make re
-rm -rf ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
+rm -rf ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
 rm -rf libft.a
 gcc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
 gcc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o
@@ -31,7 +31,9 @@ gcc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o
 gcc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o
 gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
 gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
-ar -rcs  libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o
+gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
+gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
+ar -rcs  libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o
 
 $> make bonus
 gcc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
@@ -43,10 +45,12 @@ gcc -Wall -Wextra -Werror -c ft_strlen.c -o ft_strlen.o
 gcc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o
 gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
 gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
+gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
+gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
 make: *** No rule to make target `ft_lstnew.o', needed by `bonus'.  Stop.
 
 $> ls -la libft.a
--rw-r--r--  1 amerlino  2023_rome  7224 Sep  9 20:25 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
+-rw-r--r--  1 amerlino  2023_rome  9152 Sep 10 19:19 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
 
 = Part1_functions ==============================================================
 
@@ -120,7 +124,31 @@ Diff OK :D
 $> norminette ft_memmove.c | grep -E '(Error|Warning)'
 $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_memmove.c main.c libft.a -o user_exe
 
-clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft//ft_memmove.c'
+= Test 1 ===================================================
+$> ./user_exe 01
+$> diff -U 3 user_output_test01 test01.output
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./user_exe 02
+$> diff -U 3 user_output_test02 test02.output
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./user_exe 03
+$> diff -U 3 user_output_test03 test03.output
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./user_exe 04
+$> diff -U 3 user_output_test04 test04.output
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./user_exe 05
+$> diff -U 3 user_output_test05 test05.output
+
+Diff OK :D
 
 = ft_memchr.c ==================================================================
 $> norminette ft_memchr.c | grep -E '(Error|Warning)'
@@ -183,9 +211,39 @@ clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/li
 
 = ft_strlcpy.c =================================================================
 $> norminette ft_strlcpy.c | grep -E '(Error|Warning)'
+/Users/amerlino/Desktop/libft/libft/ft_strlcpy.c: Error!
+Error: SPACE_REPLACE_TAB    (line:  19, col:  11):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line:  19, col:  12):	Misaligned variable declaration
+Error: TOO_FEW_TAB          (line:  21, col:   1):	Missing tabs for indent level
+Error: BRACE_SHOULD_EOL     (line:  32, col:   5):	Expected newline after brace
+Error: TOO_FEW_TAB          (line:  32, col:   6):	Missing tabs for indent level
+Error: EMPTY_LINE_FUNCTION  (line:  32, col:   7):	Empty line in function
+Norme check failed
 $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_strlcpy.c main.c libft.a -o user_exe
 
-clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft//ft_strlcpy.c'
+= Test 1 ===================================================
+$> ./user_exe 01
+Command './user_exe 01' got killed by an Abort
+= Test 2 ===================================================
+$> ./user_exe 02
+$> diff -U 3 user_output_test02 test02.output
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./user_exe 03
+$> diff -U 3 user_output_test03 test03.output
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./user_exe 04
+$> diff -U 3 user_output_test04 test04.output
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./user_exe 05
+$> diff -U 3 user_output_test05 test05.output
+
+Diff OK :D
 
 = ft_strchr.c ==================================================================
 $> norminette ft_strchr.c | grep -E '(Error|Warning)'
