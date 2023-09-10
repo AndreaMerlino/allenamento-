@@ -3,7 +3,7 @@ $> hostname; uname -msr
 e3r6p5.42roma.it
 Darwin 18.7.0 x86_64
 $> date
-Sun Sep 10 19:19:35 CEST 2023
+Sun Sep 10 20:19:51 CEST 2023
 $> gcc --version
 Apple clang version 11.0.0 (clang-1100.0.33.17)
 Target: x86_64-apple-darwin18.7.0
@@ -50,7 +50,7 @@ gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
 make: *** No rule to make target `ft_lstnew.o', needed by `bonus'.  Stop.
 
 $> ls -la libft.a
--rw-r--r--  1 amerlino  2023_rome  9152 Sep 10 19:19 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
+-rw-r--r--  1 amerlino  2023_rome  9152 Sep 10 20:19 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
 
 = Part1_functions ==============================================================
 
@@ -211,19 +211,13 @@ clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/li
 
 = ft_strlcpy.c =================================================================
 $> norminette ft_strlcpy.c | grep -E '(Error|Warning)'
-/Users/amerlino/Desktop/libft/libft/ft_strlcpy.c: Error!
-Error: SPACE_REPLACE_TAB    (line:  19, col:  11):	Found space when expecting tab
-Error: MISALIGNED_VAR_DECL  (line:  19, col:  12):	Misaligned variable declaration
-Error: TOO_FEW_TAB          (line:  21, col:   1):	Missing tabs for indent level
-Error: BRACE_SHOULD_EOL     (line:  32, col:   5):	Expected newline after brace
-Error: TOO_FEW_TAB          (line:  32, col:   6):	Missing tabs for indent level
-Error: EMPTY_LINE_FUNCTION  (line:  32, col:   7):	Empty line in function
-Norme check failed
 $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_strlcpy.c main.c libft.a -o user_exe
 
 = Test 1 ===================================================
 $> ./user_exe 01
-Command './user_exe 01' got killed by an Abort
+$> diff -U 3 user_output_test01 test01.output
+
+Diff OK :D
 = Test 2 ===================================================
 $> ./user_exe 02
 $> diff -U 3 user_output_test02 test02.output
