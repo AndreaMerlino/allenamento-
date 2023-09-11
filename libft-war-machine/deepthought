@@ -1,9 +1,9 @@
 = Host-specific information ====================================================
 $> hostname; uname -msr
-e3r6p5.42roma.it
+e3r8p3.42roma.it
 Darwin 18.7.0 x86_64
 $> date
-Sun Sep 10 20:19:51 CEST 2023
+Mon Sep 11 19:07:01 CEST 2023
 $> gcc --version
 Apple clang version 11.0.0 (clang-1100.0.33.17)
 Target: x86_64-apple-darwin18.7.0
@@ -20,7 +20,7 @@ $> norminette libft.h | grep -E '(Error|Warning)'
 
 = Compiling libft ==============================================================
 $> make re
-rm -rf ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
+rm -rf ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_toupper.o ft_tolower.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
 rm -rf libft.a
 gcc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
 gcc -Wall -Wextra -Werror -c ft_isdigit.c -o ft_isdigit.o
@@ -33,7 +33,10 @@ gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
 gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
 gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
 gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
-ar -rcs  libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o
+gcc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o
+gcc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
+gcc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o
+ar -rcs  libft.a ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_toupper.o ft_tolower.o
 
 $> make bonus
 gcc -Wall -Wextra -Werror -c ft_isalpha.c -o ft_isalpha.o
@@ -47,10 +50,13 @@ gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
 gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
 gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
 gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
+gcc -Wall -Wextra -Werror -c ft_strlcat.c -o ft_strlcat.o
+gcc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
+gcc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o
 make: *** No rule to make target `ft_lstnew.o', needed by `bonus'.  Stop.
 
 $> ls -la libft.a
--rw-r--r--  1 amerlino  2023_rome  9152 Sep 10 20:19 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
+-rw-r--r--  1 amerlino  2023_rome  11656 Sep 11 19:07 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
 
 = Part1_functions ==============================================================
 
@@ -207,7 +213,51 @@ clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/li
 $> norminette ft_strlcat.c | grep -E '(Error|Warning)'
 $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_strlcat.c main.c libft.a -o user_exe
 
-clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft//ft_strlcat.c'
+= Test 1 ===================================================
+$> ./user_exe 01
+$> diff -U 3 user_output_test01 test01.output
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./user_exe 02
+$> diff -U 3 user_output_test02 test02.output
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./user_exe 03
+$> diff -U 3 user_output_test03 test03.output
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./user_exe 04
+$> diff -U 3 user_output_test04 test04.output
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./user_exe 05
+$> diff -U 3 user_output_test05 test05.output
+
+Diff OK :D
+= Test 6 ===================================================
+$> ./user_exe 06
+$> diff -U 3 user_output_test06 test06.output
+
+Diff OK :D
+= Test 7 ===================================================
+$> ./user_exe 07
+$> diff -U 3 user_output_test07 test07.output
+
+Diff OK :D
+= Test 8 ===================================================
+$> ./user_exe 08
+$> diff -U 3 user_output_test08 test08.output
+
+Diff OK :D
+= Test 9 ===================================================
+$> ./user_exe 09
+$> diff -U 3 user_output_test09 test09.output
+
+Diff OK :D
 
 = ft_strlcpy.c =================================================================
 $> norminette ft_strlcpy.c | grep -E '(Error|Warning)'
@@ -478,13 +528,81 @@ Diff OK :D
 $> norminette ft_toupper.c | grep -E '(Error|Warning)'
 $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_toupper.c main.c libft.a -o user_exe
 
-clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft//ft_toupper.c'
+= Test 1 ===================================================
+$> ./user_exe 01
+$> diff -U 3 user_output_test01 test01.output
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./user_exe 02
+$> diff -U 3 user_output_test02 test02.output
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./user_exe 03
+$> diff -U 3 user_output_test03 test03.output
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./user_exe 04
+$> diff -U 3 user_output_test04 test04.output
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./user_exe 05
+$> diff -U 3 user_output_test05 test05.output
+
+Diff OK :D
+= Test 6 ===================================================
+$> ./user_exe 06
+$> diff -U 3 user_output_test06 test06.output
+
+Diff OK :D
+= Test 7 ===================================================
+$> ./user_exe 07
+$> diff -U 3 user_output_test07 test07.output
+
+Diff OK :D
 
 = ft_tolower.c =================================================================
 $> norminette ft_tolower.c | grep -E '(Error|Warning)'
 $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_tolower.c main.c libft.a -o user_exe
 
-clang: error: no such file or directory: '/Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft//ft_tolower.c'
+= Test 1 ===================================================
+$> ./user_exe 01
+$> diff -U 3 user_output_test01 test01.output
+
+Diff OK :D
+= Test 2 ===================================================
+$> ./user_exe 02
+$> diff -U 3 user_output_test02 test02.output
+
+Diff OK :D
+= Test 3 ===================================================
+$> ./user_exe 03
+$> diff -U 3 user_output_test03 test03.output
+
+Diff OK :D
+= Test 4 ===================================================
+$> ./user_exe 04
+$> diff -U 3 user_output_test04 test04.output
+
+Diff OK :D
+= Test 5 ===================================================
+$> ./user_exe 05
+$> diff -U 3 user_output_test05 test05.output
+
+Diff OK :D
+= Test 6 ===================================================
+$> ./user_exe 06
+$> diff -U 3 user_output_test06 test06.output
+
+Diff OK :D
+= Test 7 ===================================================
+$> ./user_exe 07
+$> diff -U 3 user_output_test07 test07.output
+
+Diff OK :D
 
 = Part2_functions ==============================================================
 
