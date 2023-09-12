@@ -3,7 +3,7 @@ $> hostname; uname -msr
 e3r8p5.42roma.it
 Darwin 18.7.0 x86_64
 $> date
-Tue Sep 12 18:47:01 CEST 2023
+Tue Sep 12 20:09:06 CEST 2023
 $> gcc --version
 Apple clang version 11.0.0 (clang-1100.0.33.17)
 Target: x86_64-apple-darwin18.7.0
@@ -68,7 +68,7 @@ gcc -Wall -Wextra -Werror -c ft_strnstr.c -o ft_strnstr.o
 make: *** No rule to make target `ft_lstnew.o', needed by `bonus'.  Stop.
 
 $> ls -la libft.a
--rw-r--r--  1 amerlino  2023_rome  17088 Sep 12 18:47 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
+-rw-r--r--  1 amerlino  2023_rome  17056 Sep 12 20:09 /Users/amerlino/Desktop/libft/libft/libft-war-machine/dirlibft/libft.a
 
 = Part1_functions ==============================================================
 
@@ -456,12 +456,6 @@ Diff OK :D
 
 = ft_strnstr.c =================================================================
 $> norminette ft_strnstr.c | grep -E '(Error|Warning)'
-/Users/amerlino/Desktop/libft/libft/ft_strnstr.c: Error!
-Error: SPACE_AFTER_KW       (line:  23, col:   5):	Missing space after keyword
-Error: SPC_BFR_PAR          (line:  23, col:   7):	Missing space before parenthesis (brace/bracket)
-Error: SPC_AFTER_OPERATOR   (line:  39, col:  19):	missing space after operator
-Error: TOO_MANY_LINES       (line:  45, col:   1):	Function has more than 25 lines
-Norme check failed
 $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_strnstr.c main.c libft.a -o user_exe
 
 = Test 1 ===================================================
@@ -482,15 +476,8 @@ Diff OK :D
 = Test 4 ===================================================
 $> ./user_exe 04
 $> diff -U 3 user_output_test04 test04.output
---- /Users/amerlino/Desktop/libft/libft/libft-war-machine/tests/Part1_functions/ft_strnstr/user_output_test04	2023-09-12 18:47:12.000000000 +0200$
-+++ /Users/amerlino/Desktop/libft/libft/libft-war-machine/tests/Part1_functions/ft_strnstr/test04.output	2023-09-09 17:21:10.000000000 +0200$
-@@ -1 +1 @@$
--NULL$
-\ No newline at end of file$
-+lorem ipsum dolor sit amet$
-\ No newline at end of file$
 
-Diff KO :(
+Diff OK :D
 = Test 5 ===================================================
 $> ./user_exe 05
 $> diff -U 3 user_output_test05 test05.output

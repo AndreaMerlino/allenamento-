@@ -6,7 +6,7 @@
 /*   By: amerlino <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:26:56 by amerlino          #+#    #+#             */
-/*   Updated: 2023/09/12 18:46:48 by amerlino         ###   ########.fr       */
+/*   Updated: 2023/09/12 20:08:48 by amerlino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,26 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	char	*pagliaio;
-	char	*ago;
-	int		l;
-	int		a;
+	size_t	i;
+	size_t	j;
 
-	pagliaio = (char *) haystack;
-	if(!needle)
-		return (pagliaio);
-	ago = (char *) needle;
-	l = ft_strlen(ago);
-	a = 0;
-	while (*pagliaio && len > 0)
+	i = 0;
+	if (!haystack && !len)
+		return (0);
+	if (needle[0] == '\0' && (needle == haystack))
+		return ((char *)haystack);
+	while (haystack[i] != '\0')
 	{
-		while ((*pagliaio == *ago) && len > 0)
+		j = 0;
+		while (haystack[i + j] == needle[j] && (i + j) < len)
 		{
-			ago ++;
-			len --;
-			pagliaio ++;
-			a++;
-			if (*ago == '\0')
-				return (pagliaio - l);
+			if (haystack[i + j] == '\0' && needle[j] == '\0')
+				return ((char *)&haystack[i]);
+			j++;
 		}
-		ago = ago -a;
-		a = 0;
-		pagliaio ++;
-		len --;
+		if (needle[j] == '\0')
+			return ((char *)(haystack + i));
+		i++;
 	}
-	return (NULL);
+	return (0);
 }
