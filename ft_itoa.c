@@ -1,20 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-char *ft_itoa(int n)
-{
-    char *s;
-    int i;
-    int p;
 
-    i = 0;
-    p = 0;
-    s = (char *) malloc(12 * sizeof(char));
-    if (n < 0)
-    {
-        s[p] = 45;
-        p++;
-        n = -n;
-    }
+
+char *itoa_2(int n, int i, char *s, int p)
+{
     while(n)
     {
         while(n > 9)
@@ -36,6 +25,24 @@ char *ft_itoa(int n)
             return (s);
         }
     }
+}
+
+char *ft_itoa(int n)
+{
+    char *s;
+    int i;
+    int p;
+
+    i = 0;
+    p = 0;
+    s = (char *) malloc(12 * sizeof(char));
+    if (n < 0)
+    {
+        s[p] = 45;
+        p++;
+        n = -n;
+    }
+    return (itoa_2(n, i, s, p));
 }
 
 int main(void)
